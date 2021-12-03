@@ -1,7 +1,7 @@
 import axios from 'axios';
-
+import {urlRegister,baseUrlAuth ,baseUrlApi} from'./url.js';
 const axiosClient = axios.create({
-  baseURL: 'https://api.ezfrontend.com/',
+  baseURL: baseUrlApi,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -25,7 +25,7 @@ axiosClient.interceptors.response.use(
   function (error) {
     
     const { config, status, data } = error.response;
-    const URLS = ['/auth/local/register', '/auth/local'];
+    const URLS = [urlRegister,baseUrlAuth];
     if (URLS.includes(config.url) && status === 400) {
       const errorList = data.data || [];
       const firstError = errorList.length > 0 ? errorList[0] : {};

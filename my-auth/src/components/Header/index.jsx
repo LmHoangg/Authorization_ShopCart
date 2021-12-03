@@ -3,7 +3,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { AccountCircle, Close } from "@material-ui/icons";
@@ -13,33 +12,8 @@ import Register from "features/Auth/components/Register";
 import { logout } from "features/Auth/userSlice";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { Link, NavLink, useHistory } from "react-router-dom";
 import { Link, NavLink } from "react-router-dom";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-  link: {
-    color: "#fff",
-    textDecoration: "none",
-  },
-
-  closeButton: {
-    position: "absolute",
-    top: theme.spacing(1),
-    right: theme.spacing(1),
-    color: theme.palette.grey[500],
-    zIndex: 1,
-  },
-}));
-
+import {useStyles} from './styles';
 const MODE = {
   LOGIN: "login",
   REGISTER: "register",
@@ -48,7 +22,6 @@ const MODE = {
 export default function Header() {
   const dispatch = useDispatch();
   const loggedInUser = useSelector((state) => state.user.current);
-  // const history = useHistory();
   const isLoggedIn = !!loggedInUser.id;
 
   const [open, setOpen] = useState(false);
@@ -72,8 +45,7 @@ export default function Header() {
   };
 
   const handleLogoutClick = () => {
-    const action = logout();
-    dispatch(action);
+    dispatch(logout());
   };
 
   const classes = useStyles();

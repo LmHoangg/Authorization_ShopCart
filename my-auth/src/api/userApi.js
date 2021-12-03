@@ -1,14 +1,12 @@
 import axiosClient from './axiosClient';
-
+import { urlRegister, baseUrlAuth} from './url.js';
 const userApi = {
   register(data) {
-    const url = '/auth/local/register';
-    return axiosClient.post(url, data);
+    return axiosClient.post(urlRegister, data);
   },
 
   login(data) {
-    const url = '/auth/local';
-    return axiosClient.post(url, data);
+    return axiosClient.post(baseUrlAuth, data);
   },
 };
 
